@@ -8,6 +8,7 @@ class Registrations extends CI_Controller {
 		$this->load->model('Party');
        	$this->load->model('Asistent');
         $this->load->model('Registration'); // Asegúrate de tener el modelo cargado
+		$this->load->library('session');
         $this->load->helper('url');
     }
 
@@ -23,23 +24,29 @@ class Registrations extends CI_Controller {
 
 	//ahora para guardar 
 	public function save() {
+		// Obtener los valores del formulario
 		$asistent_id = $this->input->post('asistent_id');
 		$party_id = $this->input->post('party_id');
 	
+		// Validar si los campos están vacíos
 		if (empty($asistent_id) || empty($party_id)) {
-			echo "Error: Missing required fields.";
+			// Mostrar un mensaje de error o redirigir con un mensaje de error
+			$this->session->set_flashdata('error', 'Please select both Asistent and Event.');
+			redirect('Registrations/registrationPage');
 			return;
 		}
 	
+		// Preparar los datos para guardar
 		$registrationData = array(
 			'asistent_id' => $asistent_id,
 			'party_id' => $party_id,
 		);
 	
+		// Intentar guardar los datos
 		if ($this->Registration->insertRegistration($registrationData)) {
 			redirect('Registrations/registrationPage');
 		} else {
-			echo "Error: Registration could not be saved.";
+			echo "Error: Room could not be saved.";
 		}
 	}
 
