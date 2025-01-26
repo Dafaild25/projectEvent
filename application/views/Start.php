@@ -1,14 +1,14 @@
 <div class="vh-100 d-flex flex-column justify-content-between">
     <!-- Hero Section -->
     <div class="bg-dark text-light text-center py-5" style="background: url('https://img.freepik.com/free-photo/club-party-concept-dj-playing-mixing-music-nightclub-colorful-light-crowd-silhouettes-nightlife_1258-52555.jpg') no-repeat center center/cover; height: 50vh;">
-        <h1 class="fw-bold">Welcome to the Event & Party Hub</h1>
-        <p class="lead">Find the best events and parties tailored for you!</p>
-        <button class="btn btn-warning btn-lg mt-3">Discover Events</button>
+        <h1 class="fw-bold">Welcome to the Event</h1>
+        <p class="lead">Find the best events tailored for you!</p>
+        <a class="btn btn-warning btn-lg mt-3"href="<?php echo site_url(); ?>/Partys/partyPage">EVENTS</a>
     </div>
 
     <!-- Event Cards Section -->
     <div class="container mt-4">
-        <h2 class="text-center fw-bold mb-4">Upcoming Events</h2>
+        <h2 class="text-center fw-bold mb-4"></h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card shadow-lg h-100">

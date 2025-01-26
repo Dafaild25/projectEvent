@@ -59,7 +59,7 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody id="partyTable">
+			<tbody>
 				<?php if (!empty($partys)) { ?>
 					<?php foreach ($partys as $party) { ?>
 						<tr>
@@ -136,4 +136,13 @@
 
 	// Asociamos la validación al evento de submit del formulario
 	document.getElementById('partyForm').addEventListener('submit', validateForm);
+
+
+	$(document).ready(function () {
+		// Inicializa la tabla con DataTables
+		$('#partyTable').DataTable({
+			"responsive": true,  // Hace que la tabla sea adaptable a diferentes tamaños de pantalla
+			
+		});
+	});
 </script>

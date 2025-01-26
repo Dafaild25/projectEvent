@@ -21,12 +21,12 @@
 							value="<?php echo isset($asistent) ? $asistent->last_name : ''; ?>" required>
 					</div>
 					<div class="col-md-3">
-						<input type="text" id="email" name="email" class="form-control"
+						<input type="email" id="email" name="email" class="form-control"
 							value="<?php echo isset($asistent) ? $asistent->email : ''; ?>" placeholder="Email">
 					</div>
 
 					<div class="col-md-3">
-						<input type="text" id="phone" name="phone" class="form-control"
+						<input type="phone" id="phone" name="phone" class="form-control"
 							value="<?php echo isset($asistent) ? $asistent->phone : ''; ?>" placeholder="Phone">
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 <!-- Tabla para listar los ASISTENT -->
 <div class="container">
 	<div class="table-resposive">
-		<table class="table table-bordered table-hover" id="partyTable">
+		<table class="table table-bordered table-hover" id="asistentTable">
 			<thead class="table-dark">
 				<tr>
 					<th>ID</th>
@@ -60,7 +60,7 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody id="partyTable">
+			<tbody >
 				<?php if (!empty($asistents)) { ?>
 					<?php foreach ($asistents as $asistent) { ?>
 						<tr>
@@ -141,4 +141,13 @@
 
 	// Asociamos la validación al evento de submit del formulario
 	document.getElementById('asistentForm').addEventListener('submit', validateForm);
+
+
+	$(document).ready(function () {
+		// Inicializa la tabla con DataTables
+		$('#asistentTable').DataTable({
+			"responsive": true,  // Hace que la tabla sea adaptable a diferentes tamaños de pantalla
+			
+		});
+	});
 </script>

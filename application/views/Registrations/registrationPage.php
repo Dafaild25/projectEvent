@@ -53,7 +53,7 @@
 <!-- Tabla para listar los REGISTROS -->
 <div class="container">
 	<div class="table-resposive">
-		<table class="table table-bordered table-hover" id="partyTable">
+		<table class="table table-bordered table-hover" id="registrationTable">
 			<thead class="table-dark">
 				<tr>
 					<th>ID</th>
@@ -64,29 +64,26 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody id="asistentTable">
+			<tbody>
 				<?php if (!empty($registrations)) { ?>
 					<?php foreach ($registrations as $registration) { ?>
 						<tr>
 							<td><?php echo htmlspecialchars($registration->id); ?></td>
-							<!-- Buscar el nombre del asistente -->
 							<td>
 								<?php
 								$asistent = array_filter($asistents, function ($a) use ($registration) {
 									return $a->id == $registration->asistent_id;
 								});
-								$asistent = reset($asistent); // Obtener el primer elemento del array filtrado
+								$asistent = reset($asistent);
 								echo isset($asistent) ? htmlspecialchars($asistent->first_name . ' ' . $asistent->last_name) : 'No name';
-
 								?>
 							</td>
-							<!-- Buscar el nombre del party -->
 							<td>
 								<?php
 								$party = array_filter($partys, function ($p) use ($registration) {
 									return $p->id == $registration->party_id;
 								});
-								$party = reset($party); // Obtener el primer elemento del array filtrado
+								$party = reset($party);
 								echo isset($party) ? htmlspecialchars($party->name) : 'No event';
 								?>
 							</td>
@@ -96,7 +93,7 @@
 								$party = array_filter($partys, function ($p) use ($registration) {
 									return $p->id == $registration->party_id;
 								});
-								$party = reset($party); // Obtener el primer elemento del array filtrado
+								$party = reset($party);
 								echo isset($party) ? htmlspecialchars($party->start_date) : 'No date';
 								?>
 							</td>
@@ -158,4 +155,13 @@
 			position: "right" // Puede ser "left" o "right"
 		}).showToast();
 	}
+
+
+	$(document).ready(function () {
+		// Inicializa la tabla con DataTables
+		$('#registrationTable').DataTable({
+			"responsive": true,  // Hace que la tabla sea adaptable a diferentes tamaños de pantalla
+			
+		});
+	});
 </script>
