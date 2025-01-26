@@ -37,6 +37,11 @@
                         <a class="nav-link" href="<?php echo site_url(); ?>/Partys/partyPage">Events</a>
 
                     </li>
+					<li class="nav-item">
+                        
+                        <a class="nav-link" href="<?php echo site_url(); ?>/Asistents/asistentPage">Asistent</a>
+
+                    </li>
                    
                 </ul>
                 

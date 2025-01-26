@@ -6,9 +6,9 @@
 				</h4>
             </div>
 			<div class="card-body">
-    			<form id="partyForm" method="post" action="<?php echo isset($asistent)? site_url('Asistents/update'):site_url('Asistents/save');?>">
+    			<form id="asistentForm" method="post" action="<?php echo isset($asistent)? site_url('Asistents/update'):site_url('Asistents/save');?>">
         		<div class="row g-3">
-				<input type="hidden"name="id" id="id" value="<?php echo isset($asistent) ? $party->id : ''; ?>" >
+				<input type="hidden"name="id" id="id" value="<?php echo isset($asistent) ? $asistent->id : ''; ?>" >
             <!-- Primera fila -->
             <div class="col-md-3">
                 <input 
@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-3">
                 <input 
-                    type="date" 
+                    type="text" 
                     id="last_name" 
                     name="last_name" 
                     class="form-control" 
@@ -78,25 +78,25 @@
                     <thead class="table-dark" >
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Start Date</th>
-                            <th>Location</th>
+                            <th>Firs Names</th>
+                            <th>Last names</th>
+                            <th>Email</th>
+                            <th>Phone</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="partyTable">
-						<?php if (!empty($partys)) { ?>
-							<?php foreach ($partys as $party) { ?>
+						<?php if (!empty($asistents)) { ?>
+							<?php foreach ($asistents as $asistent) { ?>
 								<tr>
-									<td><?php echo htmlspecialchars($party->id); ?></td>
-									<td><?php echo htmlspecialchars($party->name); ?></td>
-									<td><?php echo htmlspecialchars($party->description); ?></td>
-									<td><?php echo htmlspecialchars($party->start_date); ?></td>
-									<td><?php echo htmlspecialchars($party->location); ?></td>
+									<td><?php echo htmlspecialchars($asistent->id); ?></td>
+									<td><?php echo htmlspecialchars($asistent->first_name); ?></td>
+									<td><?php echo htmlspecialchars($asistent->last_name); ?></td>
+									<td><?php echo htmlspecialchars($asistent->email); ?></td>
+									<td><?php echo htmlspecialchars($asistent->phone); ?></td>
 									<td>
-										<a href="<?php echo site_url('Partys/selectParty/' .$party->id);?>" class="btn btn-primary"> <i class="fas fa-pen"></i></a>
-										<a href="<?php echo site_url('Partys/delete/' . $party->id); ?>" class="btn btn-danger">
+										<a href="<?php echo site_url('Asistents/selectAsistent/' .$asistent->id);?>" class="btn btn-primary"> <i class="fas fa-pen"></i></a>
+										<a href="<?php echo site_url('Asistents/delete/' . $asistent->id); ?>" class="btn btn-danger">
 											<i class="fas fa-trash-alt"></i> Delete
 										</a>
 									</td>
