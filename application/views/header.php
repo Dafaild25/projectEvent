@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events and Party</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/datatables.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert2.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/toastify.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/all.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome.min.css'); ?>">
-
-    <script src="<?php echo base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/all.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/sweetalert2.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/toastify.js'); ?>"></script>
 
+
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/datatables.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert2.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/toastify.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome.min.css'); ?>">
+	
+
+
+
+
+	<!-- para el bootstrap select -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -40,6 +50,11 @@
 					<li class="nav-item">
                         
                         <a class="nav-link" href="<?php echo site_url(); ?>/Asistents/asistentPage">Asistent</a>
+
+                    </li>
+					<li class="nav-item">
+                        
+                        <a class="nav-link" href="<?php echo site_url(); ?>/Registrations/registrationPage">Registration</a>
 
                     </li>
                    

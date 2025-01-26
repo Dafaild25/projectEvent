@@ -1,85 +1,86 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Asistents extends CI_Controller {
+class Registrations extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-       
-        $this->load->model('Asistent'); // Asegúrate de tener el modelo cargado
+		$this->load->model('Party');
+       	$this->load->model('Asistent');
+        $this->load->model('Registration'); // Asegúrate de tener el modelo cargado
         $this->load->helper('url');
     }
 
     // Página principal para listar 
-    public function asistentPage() {
-        $data['asistents'] = $this->Asistent->getAllAsistent(); // Obtiene todos los autores
+    public function registrationPage() {
+        $data['registrations'] = $this->Registration->getAllRegistration(); 
+        $data['asistents'] = $this->Asistent->getAllAsistent(); 
+        $data['partys'] = $this->Party->getAllParty(); 
         $this->load->view('header');
-        $this->load->view('Asistents/asistentPage',$data);
+        $this->load->view('Registrations/registrationPage',$data);
         $this->load->view('footer');
     }
 
 	//ahora para guardar 
 	public function save() {
-        $asistentData = array(
-            'first_name' => $this->input->post('first_name'),
-            'last_name' => $this->input->post('last_name'),
-            'email' => $this->input->post('email'),
-			'phone' => $this->input->post('phone')
-            
-        );
+		$asistent_id = $this->input->post('asistent_id');
+		$party_id = $this->input->post('party_id');
+	
+		if (empty($asistent_id) || empty($party_id)) {
+			echo "Error: Missing required fields.";
+			return;
+		}
+	
+		$registrationData = array(
+			'asistent_id' => $asistent_id,
+			'party_id' => $party_id,
+		);
+	
+		if ($this->Registration->insertRegistration($registrationData)) {
+			redirect('Registrations/registrationPage');
+		} else {
+			echo "Error: Registration could not be saved.";
+		}
+	}
 
-        if ($this->Asistent->insertAsistent($asistentData)) {
-            redirect('Asistents/asistentPage');
-        } else {
-            echo "Error: Room could not be saved.";
-        }
-    }
-
-	public function selectAsistent($id) {
-        $data['asistent'] = $this->Asistent->getAsistentById($id); 
-		
-        $data['asistents'] = $this->Asistent->getAllAsistent(); 
+	public function selectRegistration($id) {
+        $data['registration'] = $this->Registration->getRegistrationById($id); 
+		$data['asistents'] = $this->Asistent->getAllAsistent(); 
+        $data['partys'] = $this->Party->getAllParty(); 
+        $data['registrations'] = $this->Registration->getAllRegistration(); 
         $this->load->view('header');
-        $this->load->view('Asistents/asistentPage',$data);
+        $this->load->view('Registrations/registrationPage',$data);
         $this->load->view('footer');
     }
 
 	public function update() {
         $id = $this->input->post('id');
-        $asistentData = array(
+        $registrationData = array(
 			
-			'first_name' => $this->input->post('first_name'),
-            'last_name' => $this->input->post('last_name'),
-            'email' => $this->input->post('email'),
-			'phone' => $this->input->post('phone')
+			'asistent_id' => $this->input->post('asistent_id'),
+            'party_id' => $this->input->post('party_id'),
             
         );
 
-        if ($this->Asistent->updateAsistent($id, $asistentData)) {
-            redirect('Asistents/asistentPage');
+        if ($this->Registration->updateRegistration($id, $registrationData)) {
+            redirect('Registrations/registrationPage');
         } else {
             echo "Error: Room could not be updated.";
         }
     }
 
 	public function delete($id) {
-		// Verificar si la fiesta está relacionada con algún registro
-		if ($this->Asistent->isAsistentRelated($id)) {
-			// Si está relacionada con algún registro, redirigir con mensaje de error
-			
-			redirect('Asistents/asistentPage');
-			return;
-		}
+		
 	
 		// Si no está relacionada, proceder con la eliminación
-		if ($this->Asistent->deleteAsistent($id)) {
+		if ($this->Registration->deleteRegistration($id)) {
 			echo "Error: Exit.";
 		} else {
-			echo "Error: Party could not be updated.";
+			echo "Error: Registrartioncould not be updated.";
 		}
 	
 		// Redirigir después de la operación
-		redirect('Asistents/asistentPage');
+		redirect('Registrations/registrationPage');
 	}
 
     
